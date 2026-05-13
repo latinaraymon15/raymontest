@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Portfolio</title>
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    color: white;
+    scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+nav a:hover { color: #38bdf8; }
+
+/* SECTIONS */
+section {
+    min-height: 100vh;
+    padding: 120px 40px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hero h1 span {
+    color: #38bdf8;
+}
+
+.tagline {
+    color: #94a3b8;
+    margin: 10px 0;
+    font-style: italic;
+}
+
+/* IMAGE */
+.hero-img {
+    text-align: center;
+}
+
+.hero-img img {
+    width: 220px;
+    border-radius: 50%;
+    border: 3px solid #38bdf8;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* CARD */
+.card {
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+/* CONTACT INFO */
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.05);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.contact-item a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.contact-item button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background: #38bdf8;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.contact-item button:hover {
+    background: #0ea5e9;
+}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+    .hero { flex-direction: column; text-align:center; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>MyPortfolio</h2>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+
+
+<!-- HOME -->
+<section id="home" class="hero">
+    <div>
+        <h1>Hello, I'm <span>Raymon S. Latina</span></h1>
+        <p class="tagline" id="typing"></p>
+        <p>A Third-year Criminology student at the University of Batangas and an aspiring soldier of the Armed Forces of the Philippines (AFP). Dedicated to national service, honor, and duty. Driven by a profound desire to serve our country, my goal is to utilize my academic foundation in criminal justice to contribute effectively to national security and defense.</p>
+    </div>
+
+    <div class="hero-img">
+        <img src="C:\Users\Spicy\Downloads" alt="Raymon" class="Raymon.png">
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="card">
+        <h1>About Me</h1>
+        <p>
+            I am currently pursuing a Bachelor of Science in Criminology at University of Batangas Lipa City. I am in my third year student.
+<h1>Skills</h1>
+
+<p>Research</p>
+
+<p>Data Analysis</p>
+
+<p>Forensic Software</p>
+
+<p>Communication Skills</p>
+</p>
+        </p>
+    </div>
+</section>
+
+<!-- CONTACT INFO -->
+<section id="contact">
+    <div class="card">
+        <h1>Contact Information</h1>
+        <p style="margin-bottom:20px; color:#94a3b8;">
+            Here are my official contact details.
+        </p>
+
+        <div class="contact-item">
+            <strong>Email:</strong>
+            <span id="email">latinaraymon15@gmail.com</span>
+            <button onclick="copyText('email')">Copy</button>
+        </div>
+
+        <div class="contact-item">
+            <strong>Facebook:</strong>
+            <a href="#" target="_blank">https://www.facebook.com/raymon.siman</a>
+        </div>
+
+    </div>
+</section>
+
+<script>
+/* IMAGE PREVIEW */
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = () => {
+        document.getElementById('preview').src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+/* COPY FUNCTION */
+function copyText(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text);
+    alert("Copied: " + text);
+}
+
+/* SCROLL ANIMATION */
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+    sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            sec.classList.add("show");
+        }
+    });
+});
+
+/* TYPING EFFECT */
+const text = "Criminologist Student | Aspiring Cadet | Lifelong Learner";
+let i = 0;
+
+function typingEffect() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typingEffect, 40);
+    }
+}
+typingEffect();
+</script>
+
+</body>
+</html>
