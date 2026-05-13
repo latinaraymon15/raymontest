@@ -132,7 +132,7 @@ section.show{
 
 /* CARD */
 .card{
-    max-width:850px;
+    max-width:900px;
     margin:auto;
     background:rgba(255,255,255,0.05);
     padding:35px;
@@ -144,6 +144,28 @@ section.show{
 .card h1{
     margin-bottom:20px;
     color:#38bdf8;
+}
+
+/* SKILLS GALLERY */
+.skills-gallery{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+}
+
+.skills-gallery img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:18px;
+    box-shadow:0 0 25px rgba(56,189,248,0.25);
+    transition:0.4s;
+    animation:float 4s ease-in-out infinite;
+}
+
+.skills-gallery img:hover{
+    transform:scale(1.05);
 }
 
 /* CONTACT */
@@ -252,6 +274,13 @@ section.show{
         <p>Data Analysis</p>
         <p>Forensic Software</p>
         <p>Communication Skills</p>
+
+        <!-- SKILL IMAGES -->
+        <div class="skills-gallery">
+            <img src="firing.jpeg">
+            <img src="foren.jpeg">
+            <img src="foren1.jpeg">
+        </div>
     </div>
 </section>
 
@@ -276,14 +305,12 @@ section.show{
 </section>
 
 <script>
-/* COPY EMAIL */
 function copyText(id){
     const text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text);
     alert("Copied: " + text);
 }
 
-/* SCROLL ANIMATION */
 const sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll", () => {
@@ -295,7 +322,6 @@ window.addEventListener("scroll", () => {
     });
 });
 
-/* TYPING EFFECT */
 const text = "Criminology Student | Aspiring Cadet | Lifelong Learner";
 let i = 0;
 
